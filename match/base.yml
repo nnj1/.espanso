@@ -93,13 +93,13 @@ matches:
 
   # mental status exam
   - trigger: ".nnjmse"
-    replace: |
+    form: |
       MSE:   
-      Appearance: Patient appears {HIS/HER:27314} stated age. {HE/SHE:27134} is seated comfortably in chair during encounter. {HE/SHE:27134} is not disheveled. 
+      Appearance: Patient appears their stated age. [[gender]] is seated comfortably in chair during encounter. [[gender]] is not disheveled. 
       Behavior/attitude: Patient maintains good eye contact throughout interview
       Psychomotor: No involuntary movements. No noted tics or tremors. 
       Speech: Speech is fluent without aphasia or dysarthria. Normal rate and rhythm. No pressured speech. Volume is unremarkable.  
-      Mood: Stated mood is "***"  
+      Mood: Stated mood is "[[mood]]"  
       Affect: Euthymic, normal range of affect, with no affect lability. There were no episodes of tearfulness or irritability during interview. 
       Thought Process: Linear, logical, and organized. No tangentiality, No circumstantiality. Does not require constant redirection to answer questions. Does not display any flight-of-ideas.  
       Thought Content: Significant religious and persecutory delusions. Significant paranoid thinking pertaining to hospitals and mental health institutions. Denies experiencing passive death wish or active suicidal ideation during the encounter. Denies homicidal ideation.  
@@ -108,7 +108,15 @@ matches:
       Insight: {GOOD/FAIR/POOR/EXCELLENT:24238}
       Judgment: {GOOD/FAIR/POOR/EXCELLENT:24238}
       Impulsivity: Intact over the course of the examination   
-  
+    form_fields:
+      mood:
+        type: text
+      gender:
+        type: choice
+        values:
+          - He
+          - She
+          - They
   # dispo statement for an in
   - trigger: ".nnjdispoin"
     replace: "Currently, patient presents with elevated imminent risk of harm to self and would benefit from further psychiatric care in the least restrictive setting consistent with their degree of psychiatric impairment, which presently is in the inpatient setting for the purpose of acute stabilization medication initiation/optimization, and brief respite."
@@ -117,4 +125,48 @@ matches:
   - trigger: ".nnjdispoout"
     replace: "Currently, patient does not present with elevated imminent risk of harm to self and would benefit from further psychiatric care in the least restrictive setting consistent with their degree of psychiatric impairment, which would be outpatient."
   
+  # psych ROS
+  - trigger: ".nnjros"
+    replace: |
+      Psychiatric Review Of Systems:
+      sleep: none
+      appetite changes: none
+      weight changes: none
+      energy/anergy: none
+      interest/pleasure/anhedonia: none
+      somatic symptoms: none
+      libido: none
+      anxiety/panic: none
+      guilty/hopeless: none
+      S.I.B.s/risky behavior: none
+      any drugs: none
+      alcohol: none
+  
+  # risk assessment block
+  - trigger: ".nnjrisk"
+    form: |
+      Overall Risk Assessment:
+      Suicide: Appears [[scale]]. Fixed risk factors include {amkriskfactorsforsuicide:29240}. Modifiable risk factors include {amkriskfactorsforsuicide-mod:32178}. Protective factors include {amkprotectivefactorsforsuicide:29244}.
+      Self-injury: Appears [[scale]]. Patient {amkdo:28993} have history of prior self-injurious behavior, including *** 
+      Dangerousness to Others: Appears [[scale]]. {AMKviolence:29257}
+    form_fields:
+      scale:
+          type: choice
+          values:
+            - low
+            - moderate
+            - high
+
+  # attending staffing block
+  - trigger: ".nnjstaff"
+    form: |
+      Patient [[discussion_status]] with psychiatry attending, Dr. [[attending]]. Thank you for the consult.
+    form_fields:
+      discussion_status:
+        type: choice
+        values:
+          - discussed
+          - to be discussed
+      attending:
+        type: text
   # And much more! For more information, visit the docs: https://espanso.org/docs/
