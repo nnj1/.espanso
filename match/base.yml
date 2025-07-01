@@ -7,9 +7,34 @@
 
 # Matches are substitution rules: when you type the "trigger" string
 # it gets replaced by the "replace" string.
+
+global_vars:
+  - name: current_date
+    type: date
+    params:
+      format: "%Y-%m-%d" # YYYY-MM-DD
+  - name: current_time
+    type: date
+    params:
+      format: "%H:%M:%S" # HH:MM:SS
+  - name: full_datetime
+    type: date
+    params:
+      format: "%Y-%m-%d %H:%M:%S" # YYYY-MM-DD HH:MM:SS
+  - name: tomorrow_date
+    type: date
+    params:
+      format: "%x" # System's localized date format
+      offset: 86400 # 24 hours in seconds for tomorrow
+  - name: yesterday_date
+    type: date
+    params:
+      format: "%x"
+      offset: -86400 # 24 hours in seconds for yesterday
+
 matches:
   # Simple text replacement
-  - trigger: ":espanso"
+  - trigger: ".espanso"
     replace: "Hi there!"
 
   # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
@@ -17,7 +42,7 @@ matches:
   # But matches can also be dynamic:
 
   # Print the current date
-  - trigger: ":date"
+  - trigger: ".date"
     replace: "{{mydate}}"
     vars:
       - name: mydate
@@ -26,12 +51,70 @@ matches:
           format: "%m/%d/%Y"
 
   # Print the output of a shell command
-  - trigger: ":shell"
+  - trigger: ".shell"
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: "echo 'Hello from your shell'"
+  
+  # em dash
+  - trigger: ".emdash"
+    replace: "—"
 
+  # My note signature
+  - trigger: ".nnjsig"
+    replace: "Newlyn Joseph, MD, MS\nPGY3 Psychiatry\nAlbany Medical Center\nSigned {{full_datetime}}"
+
+  # Dictation disclaimer
+  - trigger: ".nnjdictation"
+    replace: "This note was generated using Dragon Medical One, errors may be present in transcription."
+
+  # delirium recs
+  - trigger: ".nnjdelirium"
+    replace: |
+      — Avoid or minimize all potentially deliriogenic medications where possible, especially anticholinergics and benzodiazepines, and use the minimum effective dose of short-acting agents where needed.  
+      — Follow labs and vitals closely, frequent Urinalysis.  
+      — Maintain a low threshold to repeat neuroimaging, especially if patient falls, has an abrupt change in mentation, or new focal findings in the setting of impaired examination (although low yield).  
+      — We recommend the following behavioral Interventions:
+        1. Lights on with shades open during the day.
+        2. Frequent re-orientation.
+        3. Visible analog clock and calendar.
+        4. Appropriate simulation levels.
+        5. Encourage use of sensory aids.
+        6. Mobilize or ambulate with assistance as soon as possible.
+        7. Sleep protection (but use no hypnotics of any kind).
+        8. Avoid restraints if possible. Please consider low bed with mats, mittens or a patient companion first.  
+
+  # student note disclaimer
+  - trigger: ".nnjstudentnote"
+    replace: "THIS IS A MEDICAL STUDENT NOTE, PLEASE SEE RESIDENT NOTE FOR PLAN OF CARE."
+
+  # mental status exam
+  - trigger: ".nnjmse"
+    replace: |
+      MSE:   
+      Appearance: Patient appears {HIS/HER:27314} stated age. {HE/SHE:27134} is seated comfortably in chair during encounter. {HE/SHE:27134} is not disheveled. 
+      Behavior/attitude: Patient maintains good eye contact throughout interview
+      Psychomotor: No involuntary movements. No noted tics or tremors. 
+      Speech: Speech is fluent without aphasia or dysarthria. Normal rate and rhythm. No pressured speech. Volume is unremarkable.  
+      Mood: Stated mood is "***"  
+      Affect: Euthymic, normal range of affect, with no affect lability. There were no episodes of tearfulness or irritability during interview. 
+      Thought Process: Linear, logical, and organized. No tangentiality, No circumstantiality. Does not require constant redirection to answer questions. Does not display any flight-of-ideas.  
+      Thought Content: Significant religious and persecutory delusions. Significant paranoid thinking pertaining to hospitals and mental health institutions. Denies experiencing passive death wish or active suicidal ideation during the encounter. Denies homicidal ideation.  
+      Perception: Denied any AVH. Evidence of reacting to internal stimuli when observed on the unit.  
+      Cognition/memory/attention: Awake, alert, and oriented x3. Memory grossly intact. Attention grossly intact.  
+      Insight: {GOOD/FAIR/POOR/EXCELLENT:24238}
+      Judgment: {GOOD/FAIR/POOR/EXCELLENT:24238}
+      Impulsivity: Intact over the course of the examination   
+  
+  # dispo statement for an in
+  - trigger: ".nnjdispoin"
+    replace: "Currently, patient presents with elevated imminent risk of harm to self and would benefit from further psychiatric care in the least restrictive setting consistent with their degree of psychiatric impairment, which presently is in the inpatient setting for the purpose of acute stabilization medication initiation/optimization, and brief respite."
+    
+  # dispo statement for an out
+  - trigger: ".nnjdispoout"
+    replace: "Currently, patient does not present with elevated imminent risk of harm to self and would benefit from further psychiatric care in the least restrictive setting consistent with their degree of psychiatric impairment, which would be outpatient."
+  
   # And much more! For more information, visit the docs: https://espanso.org/docs/
