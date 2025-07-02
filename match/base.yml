@@ -67,6 +67,15 @@ matches:
   - trigger: ".nnjsig"
     replace: "Newlyn Joseph, MD, MS\nPGY3 Psychiatry\nAlbany Medical Center\nSigned {{full_datetime}}"
 
+  # My email signature
+  - trigger: ".nnjesig"
+    replace: |
+      Newlyn Joseph, M.D., M.S.
+      Albany Medical Center, Department of Psychiatry
+      josephn4@amc.edu
+      new.joseph10@gmail.com | newlyn.joseph@aya.yale.edu
+      Cell: (203) 584-6402 | Fax: (661) 220-7524
+
   # Dictation disclaimer
   - trigger: ".nnjdictation"
     replace: "This note was generated using Dragon Medical One, errors may be present in transcription."
@@ -117,6 +126,7 @@ matches:
           - He
           - She
           - They
+  
   # dispo statement for an in
   - trigger: ".nnjdispoin"
     replace: "Currently, patient presents with elevated imminent risk of harm to self and would benefit from further psychiatric care in the least restrictive setting consistent with their degree of psychiatric impairment, which presently is in the inpatient setting for the purpose of acute stabilization medication initiation/optimization, and brief respite."
@@ -169,4 +179,89 @@ matches:
           - to be discussed
       attending:
         type: text
+
+  - trigger: ".nnjblackbox"
+    replace: "When prescribing psychotropics for elderly patients, it is important to be aware of the black box warning associated with certain medications, particularly antipsychotics. These medications carry an increased risk of mortality in elderly patients with dementia-related psychosis. The warning highlights the potential for cardiovascular events, such as heart failure and sudden death, as well as infectious events like pneumonia. Therefore, careful consideration and monitoring are essential when using these medications in the elderly, weighing the potential benefits against the risks. Always start with the lowest effective dose, titrate slowly, and regularly reassess the need for continued use."
+
+  - trigger: ".nnjaims"
+    form: |
+      AIMS Exam: Abnormal Involuntary Movement Scale
+
+      I. Facial and Oral Movements
+      [ ] 0 - None
+      [ ] 1 - Minimal (may be extreme normal)
+      [ ] 2 - Mild
+      [ ] 3 - Moderate
+      [ ] 4 - Severe
+
+      Lips and Perioral Area: Puckering, pouting, smacking, chewing, sucking, grimacing
+      Observed: [ ]
+
+      Jaw: Clenching, wide opening, lateral movements
+      Observed: [ ]
+
+      Tongue: Protrusion, retractions, side-to-side movements
+      Observed: [ ]
+
+      II. Extremity Movements
+      [ ] 0 - None
+      [ ] 1 - Minimal (may be extreme normal)
+      [ ] 2 - Mild
+      [ ] 3 - Moderate
+      [ ] 4 - Severe
+
+      Upper Extremities (Arms, Wrists, Hands, Fingers): Choreiform (rapid, jerky), athetoid (slow, writhing), pill-rolling, tics, tremors
+      Right: [ ]
+      Left: [ ]
+
+      Lower Extremities (Legs, Ankles, Feet, Toes): Rocking, stomping, walking in place, kicking, foot tapping, toe movements
+      Right: [ ]
+      Left: [ ]
+
+      III. Trunk Movements
+      [ ] 0 - None
+      [ ] 1 - Minimal (may be extreme normal)
+      [ ] 2 - Mild
+      [ ] 3 - Moderate
+      [ ] 4 - Severe
+
+      Neck, Shoulders, Hips: Rocking, twisting, squirming, forward/backward movements
+      Observed: [ ]
+
+      IV. Global Severity and Incapacitation
+      Overall Severity of Abnormal Movements:
+      [ ] 0 - None
+      [ ] 1 - Minimal
+      [ ] 2 - Mild
+      [ ] 3 - Moderate
+      [ ] 4 - Severe
+
+      Incapacitation Due to Movements: (How much do movements interfere with daily activities?)
+      [ ] 0 - None
+      [ ] 1 - Minimal (no interference)
+      [ ] 2 - Mild (slight interference, patient can compensate)
+      [ ] 3 - Moderate (significant interference, patient has difficulty)
+      [ ] 4 - Severe (movements incapacitating, patient cannot function independently)
+
+      V. Dental Status (Check all that apply)
+      [ ] 1. No teeth
+      [ ] 2. Dentures
+      [ ] 3. Partial plates
+      [ ] 4. All/most teeth present
+
+      Additional Observations/Comments:
+
+  - trigger: ".nnjhunter"
+    form: |
+      Hunter Serotonin Toxicity Criteria Form
+
+      Serotonergic Agent Exposure: [ ] Yes [ ] No
+      Spontaneous Clonus: [ ] Yes [ ] No
+      Inducible Clonus + Agitation or Diaphoresis: [ ] Yes [ ] No
+      Ocular Clonus + Agitation or Diaphoresis: [ ] Yes [ ] No
+      Tremor and Hyperreflexia: [ ] Yes [ ] No
+      Hypertonia and Temperature >38°C (100.4 F) + Ocular or Inducible Clonus: [ ] Yes [ ] No
+
+      Diagnosis of serotonin syndrome is made if serotonergic agent exposure is present and any one of the above criteria is met.
+  
   # And much more! For more information, visit the docs: https://espanso.org/docs/
