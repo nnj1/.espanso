@@ -65,7 +65,7 @@ matches:
 
   # My note signature
   - trigger: ".nnjsig"
-    replace: "Newlyn Joseph, MD, MS\nPGY3 Psychiatry\nAlbany Medical Center\nSigned {{full_datetime}}"
+    replace: "Newlyn Joseph, M.D., M.S.\nPGY3 Psychiatry\nAlbany Medical Center\nSigned {{full_datetime}}"
 
   # My email signature
   - trigger: ".nnjesig"
@@ -94,7 +94,83 @@ matches:
         5. Encourage use of sensory aids.
         6. Mobilize or ambulate with assistance as soon as possible.
         7. Sleep protection (but use no hypnotics of any kind).
-        8. Avoid restraints if possible. Please consider low bed with mats, mittens or a patient companion first.  
+        8. Avoid restraints if possible. Please consider low bed with mats, mittens or a patient companion first.
+
+  # phq9 form
+  - trigger: ".nnjphq9"
+    form: |
+      Patient Health Questionnaire-9 (PHQ-9)
+      Over the last 2 weeks, how often have you been bothered by any of the following problems?
+      
+      Little interest or pleasure in doing things
+      [ ] Not at all (0)
+      [ ] Several days (1)
+      [ ] More than half the days (2)
+      [ ] Nearly every day (3)
+      
+      Feeling down, depressed, or hopeless
+      [ ] Not at all (0)
+      [ ] Several days (1)
+      [ ] More than half the days (2)
+      [ ] Nearly every day (3)
+      
+      Trouble falling or staying asleep, or sleeping too much
+      [ ] Not at all (0)
+      [ ] Several days (1)
+      [ ] More than half the days (2)
+      [ ] Nearly every day (3)
+      
+      Feeling tired or having little energy
+      [ ] Not at all (0)
+      [ ] Several days (1)
+      [ ] More than half the days (2)
+      [ ] Nearly every day (3)
+      
+      Poor appetite or overeating
+      [ ] Not at all (0)
+      [ ] Several days (1)
+      [ ] More than half the days (2)
+      [ ] Nearly every day (3)
+      
+      Feeling bad about yourself — or that you are a failure or have let yourself or your family down
+      [ ] Not at all (0)
+      [ ] Several days (1)
+      [ ] More than half the days (2)
+      [ ] Nearly every day (3)
+      
+      Trouble concentrating on things, such as reading the newspaper or watching television
+      [ ] Not at all (0)
+      [ ] Several days (1)
+      [ ] More than half the days (2)
+      [ ] Nearly every day (3)
+      
+      Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual
+      [ ] Not at all (0)
+      [ ] Several days (1)
+      [ ] More than half the days (2)
+      [ ] Nearly every day (3)
+      
+      Thoughts that you would be better off dead, or thoughts of hurting yourself in some way
+      [ ] Not at all (0)
+      [ ] Several days (1)
+      [ ] More than half the days (2)
+      [ ] Nearly every day (3)
+      
+      If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?
+      [ ] Not difficult at all
+      [ ] Somewhat difficult
+      [ ] Very difficult
+      [ ] Extremely difficult
+      
+      Add up the scores for each of the 9 questions.
+      Total score: ***
+      
+      Interpretation of scores:
+      0-4: Minimal depression
+      5-9: Mild depression
+      10-14: Moderate depression
+      15-19: Moderately severe depression
+      20-27: Severe depression
 
   # student note disclaimer
   - trigger: ".nnjstudentnote"
