@@ -63,6 +63,24 @@ matches:
   - trigger: ".emdash"
     replace: "—"
 
+  # email openers
+  - trigger: ".greeting"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "python3 -c \"import random; print(random.choice(['Hello. I hope this email finds you well.', 'Hello. I hope you are doing well.']))\""
+  
+  # email closers
+  - trigger: ".closing"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "python3 -c \"import random; print(random.choice(['Best,', 'Best regards,', 'Kind regards,', 'Sincerely,', 'Regards,']))\""
+
   # My note signature
   - trigger: ".nnjsig"
     replace: "Newlyn Joseph, M.D., M.S.\nPGY3 Psychiatry\nAlbany Medical Center\nSigned {{full_datetime}}"
@@ -175,6 +193,7 @@ matches:
   # student note disclaimer
   - trigger: ".nnjstudentnote"
     replace: "THIS IS A MEDICAL STUDENT NOTE, PLEASE SEE RESIDENT NOTE FOR PLAN OF CARE."
+ 
 
   # mental status exam
   - trigger: ".nnjmse"
