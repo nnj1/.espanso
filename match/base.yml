@@ -64,7 +64,7 @@ matches:
     replace: "—"
 
   # email openers
-  - trigger: ".greeting"
+  - trigger: ".nnjgreeting"
     replace: "{{output}}"
     vars:
       - name: output
@@ -73,7 +73,7 @@ matches:
           cmd: "python3 -c \"import random; print(random.choice(['Hello. I hope this email finds you well.', 'Hello. I hope you are doing well.']))\""
   
   # email closers
-  - trigger: ".closing"
+  - trigger: ".nnjclosing"
     replace: "{{output}}"
     vars:
       - name: output
